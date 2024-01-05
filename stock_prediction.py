@@ -24,11 +24,12 @@ while True:
 ticker_info = ticker.info
 
 # Download historical data as dataframe
-end_date = datetime.datetime.now().date() - datetime.timedelta(days=365)
-start_date = end_date - datetime.timedelta(days=365*11)
+end_date = datetime.datetime.now().date() - datetime.timedelta(days=30)
+start_date = end_date - datetime.timedelta(days=60)
 df = yf.download(t, start=start_date, end=end_date)
 
-test_data = yf.download(t,start=datetime.datetime.now().date()-datetime.timedelta(days=365),end=datetime.datetime.now())
+# Downlaod data for testing
+test_data = yf.download(t, start=datetime.datetime.now().date()-datetime.timedelta(days=90), end=datetime.datetime.now())
 
 # Calculate the moving average
 df['Moving_Avg'] = df['Close'].rolling(window=5).mean()

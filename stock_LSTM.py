@@ -9,7 +9,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras import layers
 from tensorflow.keras.models import load_model
-model_path = './model'
+model_path = './model/'
 
 t = ""
 while True:
@@ -122,7 +122,7 @@ plt.plot(dates_test,y_test)
 plt.legend(['Train','Validation','Test'])
 plt.show()
 
-if os.path.exists(os.path.join(model_path, 'saved_model.pb')):
+if os.path.exists(os.path.join(model_path, f'${t}_model.pb')):
     print("Loading existing model.")
     model = load_model(model_path)
 else:
@@ -134,7 +134,7 @@ else:
                         layers.Dense(1)])
     
     model.compile(loss='mse', optimizer=Adam(learning_rate=0.001), metrics=['mean_absolute_error'])
-    model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=100)
+    model.fit(X_train, y_train, validation_data=(X_val, y_val), epochs=120)
     
     # Save the trained model
     model.save(model_path)
@@ -143,13 +143,13 @@ else:
 train_predictions = model.predict(X_train).flatten()
 plt.plot(dates_train, train_predictions)
 plt.plot(dates_train, y_train)
-plt.legend(['Training Predeictions','Training Observations'])
+plt.legend(['Training Predictions','Training Observations'])
 plt.show()
 
 val_predictions = model.predict(X_val).flatten()
 plt.plot(dates_val, val_predictions)
 plt.plot(dates_val, y_val)
-plt.legend(['Validation Predeictions','Validation Observations'])
+plt.legend(['Validation Predictions','Validation Observations'])
 plt.show()
 
 test_predictions = model.predict(X_test).flatten()
