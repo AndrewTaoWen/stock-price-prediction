@@ -1,6 +1,6 @@
 # Stock Price Prediction
 
-**Contributors: Andrew Wen, Victor Su**
+**Contributors: Andrew Wen, Victor Su, Daniel Shen**
 
 To use stock price prediction, clone repository.
 ```
