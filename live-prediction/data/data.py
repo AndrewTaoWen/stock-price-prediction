@@ -5,13 +5,12 @@ import os
 # app = Flask(__name__)
 
 # Your Alpha Vantage API key
-# API_KEY = os.environ["API_KEY"]
-API_KEY = "0DDXA37ZRYDYH4RP"
+API_KEY = os.environ["API_KEY"]
 
 # Function to get live stock price
 def get_live_stock_price(symbol):
     url = f'https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&outputsize=full&symbol={symbol}&interval=1min&apikey={API_KEY}'
-    response = requests.get(url)
+    response = requests.get(url, timeout=20)
     return response.json()
 
 import json
